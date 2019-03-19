@@ -14,7 +14,7 @@ const conopts = {
   // password: process.env.PGPASSWORD,
   user: 'lzmovuwmlnwgog',
   password: 'c392d8857c57cf3ab607586434c08cf445369d536b53c7833231c0f507a3fe09',
-  //DATABASE_URL: 'postgres://lzmovuwmlnwgog:c392d8857c57cf3ab607586434c08cf445369d536b53c7833231c0f507a3fe09@ec2-54-246-92-116.eu-west-1.compute.amazonaws.com:5432/dc7l8hdpr0tbic',
+  DATABASE_URL: 'postgres://lzmovuwmlnwgog:c392d8857c57cf3ab607586434c08cf445369d536b53c7833231c0f507a3fe09@ec2-54-246-92-116.eu-west-1.compute.amazonaws.com:5432/dc7l8hdpr0tbic',
   host: 'ec2-54-246-92-116.eu-west-1.compute.amazonaws.com',
   database: 'dc7l8hdpr0tbic',
   //connectionString: process.env.DATABASE_URL,
