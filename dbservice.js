@@ -61,7 +61,7 @@ function getAllData(table_name) {
 
 function addQuote(quote, response) {
   console.log(quote)
-  return client.connect()
+  return pool.connect()
     .then(client => {
       const kysely = {
         text: "insert into generator(text, class) values($1::text, $2::text) RETURNING *",
