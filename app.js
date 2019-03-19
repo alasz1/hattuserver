@@ -28,11 +28,13 @@ app.post('/api/bingo', function (req, res) {
 
  app.use('/api', router);
 
- let server = app.listen(3000, () => {
-     console.log(`Server listening on ${server.address().port}`);
- });
+//  let server = app.listen(3000, () => {
+//      console.log(`Server listening on ${server.address().port}`);
+//  });
 
 // app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${port}!`));
+
+app.listen(process.env.PORT || 5000);
 
 // app.listen(port, function() {
 //     console.log('Our app is running on http://localhost:' + port);
