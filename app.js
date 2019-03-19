@@ -14,14 +14,15 @@ app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Get messages
-router.get('/api/bingo', function (req, res) {
+// Get Messages from Bingo
+app.get('/api/bingo', function (req, res) {
      dbserv.getBingoData().then(data => { res.json(data) });
  })
 
- // Post Quote
- router.post('/api/addquote', parser, function (req, res) {
-    dbserv.addQuote(req).then(data => { (data => { res.json(data) }); }); 
+ // Post Quote to Generator
+app.post('/api/bingo', function (req, res) {
+    console.log(req.body)
+    dbserv.addQuote(req, res).then(data => { res.json(data) }); 
     //res.redirect('/messages/' +  req.body.table_name);
 })
 

@@ -18,7 +18,7 @@ const conopts = {
   host: 'ec2-54-246-92-116.eu-west-1.compute.amazonaws.com',
   database: 'dc7l8hdpr0tbic',
   //connectionString: process.env.DATABASE_URL,
-  //ssl: true,
+  ssl: true,
   //sslmode: "require"
 };
 
@@ -40,38 +40,33 @@ function getBingoData() {
     });
 };
 
-// const { Client } = require('pg');
+// function addQuote(q, response) {
+//   console.log(q)
+//   return pool.connect()
+//     .then(client => {
+//       const kysely = {
+//         text: 'insert into bingo(quote) values('+ quote +')',
+//         values: [q]
+//       };
+//       client.query(kysely, (error, results) => {
+//         if (error) {
+//           throw (error);
+//         }
+//         //response.status(201).send(`Quote added`)
+//       });
+//     });
+// };
 
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: true,
-// });
+const addQuote = (request, response) => {
+  const { quote } = request.body
 
-// client.connect();
-
-// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-//   if (err) throw err;
-//   for (let row of res.rows) {
-//     console.log(JSON.stringify(row));
-//   }
-//   client.end();
-// });
-
-function addQuote(quote, response) {
-  console.log(quote)
-  return pool.connect()
-    .then(client => {
-      const kysely = {
-        text: "insert into generator(text, class) values($1::text, $2::text) RETURNING *",
-        values: [quote.text, quote.class]
-      };
-      client.query(kysely, (error, results) => {
-        if (error) {
-          throw (error);
-        }
-        response.status(201).send(`Quote added`)
-      });
-    });
-};
+  pool.query('INSERT INTO bingo (quote) VALUES ($1)', [quote], (error, results) => {
+    if (error) {
+      throw error
+    }
+    //response.status(201).send(`Quote added`)
+    console.log("quote added")
+  })
+}
 
 module.exports = { getBingoData, addQuote };
