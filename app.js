@@ -28,6 +28,6 @@ app.post('/api/bingo', function (req, res) {
 
  app.use('/api', router);
 
- let server = app.listen(3000, () => {
-     console.log(`Server listening on ${server.address().port}`);
- });
+//  let server = app.listen(3000, () => {
+//      console.log(`Server listening on ${server.address().port}`);
+//  });
