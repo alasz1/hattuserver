@@ -1,7 +1,13 @@
 
 require('dotenv').config()
 
-const Pool = require('pg').Pool;
+// const Pool = require('pg').Pool;
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
 
 const conopts = {
   // user: process.env.PGUSER,
@@ -33,10 +39,26 @@ function getAllData(table_name) {
     });
 };
 
+// const { Client } = require('pg');
+
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true,
+// });
+
+// client.connect();
+
+// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
 
 function addQuote(quote, response) {
   console.log(quote)
-  return pool.connect()
+  return client.connect()
     .then(client => {
       const kysely = {
         text: "insert into generator(quote, class) values($1::text, $2::text) RETURNING *",
