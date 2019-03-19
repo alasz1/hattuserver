@@ -1,7 +1,7 @@
 
 require('dotenv').config()
 
-// const Pool = require('pg').Pool;
+const Pool = require('pg').Pool;
 const { Client } = require('pg');
 
 const client = new Client({
@@ -23,16 +23,13 @@ const conopts = {
 
 const pool = new Pool(conopts);
 
-function getAllData(table_name) {
+function getBingoData() {
   return pool.connect()
     .then(client => {
-      let sql = "SELECT * FROM " + table_name + ";";
+      let sql = "SELECT * FROM bingo;";
       return client.query(sql)
         .then(res => {
           client.release();
-          for (let row of res.rows) {
-            console.log(JSON.stringify(row));
-          }
           return res.rows;
         })
         .catch(err => {
@@ -76,4 +73,4 @@ function addQuote(quote, response) {
     });
 };
 
-module.exports = { getAllData, addQuote };
+module.exports = { getBingoData, addQuote };

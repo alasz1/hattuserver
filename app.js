@@ -15,13 +15,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Get messages
-router.get('/getdata/:table_name', parser, function (req, res) {
-    console.log(req.params.table_name);
-     dbserv.getAllData(req.params.table_name).then(data => { res.json(data) });
+router.get('/api/bingo', function (req, res) {
+     dbserv.getBingoData().then(data => { res.json(data) });
  })
 
  // Post Quote
- router.post('/addquote', parser, function (req, res) {
+ router.post('/api/addquote', parser, function (req, res) {
     dbserv.addQuote(req).then(data => { (data => { res.json(data) }); }); 
     //res.redirect('/messages/' +  req.body.table_name);
 })
