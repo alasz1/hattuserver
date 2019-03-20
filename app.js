@@ -6,6 +6,7 @@ var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json());
 var router = express.Router();
 //const fs = require('fs');
+//encoding UTF8
 
 const dbserv = require("./dbservice");
 var cors = require('cors');
