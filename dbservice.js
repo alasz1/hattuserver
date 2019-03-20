@@ -44,6 +44,22 @@ function getBingoData() {
     });
 };
 
+function getGeneratorData() {
+  return pool.connect()
+    .then(client => {
+      let sql = "SELECT * FROM generator;";
+      return client.query(sql)
+        .then(res => {
+          client.release();
+          return res.rows;
+        })
+        .catch(err => {
+          client.release();
+          throw error;
+        });
+    });
+};
+
 // function addQuote(q, response) {
 //   console.log(q)
 //   return pool.connect()
@@ -73,4 +89,4 @@ const addQuote = (request, response) => {
   })
 }
 
-module.exports = { getBingoData, addQuote };
+module.exports = { getBingoData, addQuote, getGeneratorData };

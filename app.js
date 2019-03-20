@@ -19,6 +19,12 @@ app.get('/api/bingo', function (req, res) {
      dbserv.getBingoData().then(data => { res.json(data) });
  })
 
+ // Get generator quotes
+ app.get('/api/generaattori', function (req, res) {
+     dbserv.getGeneratorData().then(data => { res.json(data) });
+ })
+
+
  // Post Quote to Generator
 app.post('/api/bingo', function (req, res) {
     console.log(req.body)
