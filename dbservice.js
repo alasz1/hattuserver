@@ -31,7 +31,7 @@ const pool = new Pool({
 function getBingoData() {
   return pool.connect()
     .then(client => {
-      let sql = "SELECT * FROM bingo;";
+      let sql = "SELECT * FROM bingo ORDER BY RANDOM() LIMIT 16;";
       return client.query(sql)
         .then(res => {
           client.release();
@@ -47,7 +47,7 @@ function getBingoData() {
 function getGeneratorData() {
   return pool.connect()
     .then(client => {
-      let sql = "SELECT * FROM generator;";
+      let sql = "SELECT * FROM generator ORDER BY RANDOM() LIMIT 1;";
       return client.query(sql)
         .then(res => {
           client.release();
