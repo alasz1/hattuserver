@@ -35,7 +35,7 @@ function getBingoData() {
       return client.query(sql)
         .then(res => {
           client.release();
-          return encodeURIComponent(res.rows);
+          return res.rows;
         })
         .catch(err => {
           client.release();
@@ -51,7 +51,7 @@ function getGeneratorData() {
       return client.query(sql)
         .then(res => {
           client.release();
-          return encodeURIComponent(res.rows);
+          return res.rows;
         })
         .catch(err => {
           client.release();
