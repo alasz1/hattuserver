@@ -6,8 +6,6 @@ var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json());
 var router = express.Router();
 //const fs = require('fs');
-//encoding UTF8
-const utf8 = require('utf8');
 
 const dbserv = require("./dbservice");
 var cors = require('cors');
@@ -18,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Get Messages from Bingo
 app.get('/api/bingo', function (req, res) {
-     dbserv.getBingoData().then(data => { utf8.encode(res.json(data)) });
+     dbserv.getBingoData().then(data => { res.json(data) });
  })
 
  // Get generator quotes
