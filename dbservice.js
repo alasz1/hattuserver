@@ -31,11 +31,11 @@ const pool = new Pool({
 function getBingoData() {
   return pool.connect()
     .then(client => {
-      let sql = encodeURIComponent("SELECT * FROM bingo ORDER BY RANDOM() LIMIT 16;");
+      let sql = "SELECT * FROM bingo ORDER BY RANDOM() LIMIT 16;";
       return client.query(sql)
         .then(res => {
           client.release();
-          return res.rows;
+          return encodeURIComponent(res.rows);
         })
         .catch(err => {
           client.release();
@@ -47,11 +47,11 @@ function getBingoData() {
 function getGeneratorData() {
   return pool.connect()
     .then(client => {
-      let sql = encodeURIComponent("SELECT * FROM generator ORDER BY RANDOM() LIMIT 1;");
+      let sql = "SELECT * FROM generator ORDER BY RANDOM() LIMIT 1;";
       return client.query(sql)
         .then(res => {
           client.release();
-          return res.rows;
+          return encodeURIComponent(res.rows);
         })
         .catch(err => {
           client.release();
